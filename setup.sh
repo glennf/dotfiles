@@ -34,6 +34,10 @@ else
     echo "Homebrew already installed!"
 fi
 
+# Make brew run in shell
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/t928390/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Install XCode Command Line Tools
 echo 'Checking to see if XCode Command Line Tools are installed...'
 brew config
@@ -67,9 +71,15 @@ git clone https://github.com/powerline/fonts.git
 cd fonts || exit
 sh -c ./install.sh
 
+
+
 # Install sdkman
 curl -s "https://get.sdkman.io" | bash
 
+sdk install java 8.0.312-zulu
+sdk install java 11.0.13-zulu
+sdk install sbt
+sdk install scala 
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
 #brew install nmap
 
@@ -92,7 +102,14 @@ brew install --appdir="/Applications" visual-studio-code
 brew install --appdir="/Applications" google-chrome
 brew install --appdir="/Applications" slack
 brew install --appdir="/Applications" 1password
+# Docker doesn't seem to install Docker Desktop
+# brew cask install --appdir="/Applications" docker
+brew install jetbrains-toolbox
+brew install webex
+brwe install citrix-workspace
 #brew install --appdir="/Applications" caffeine
+
+softwareupdate --install-rosetta --agree-to-license
 
 # Remove outdated versions from the cellar.
 echo "Running brew cleanup..."
