@@ -76,10 +76,11 @@ sh -c ./install.sh
 # Install sdkman
 curl -s "https://get.sdkman.io" | bash
 
-sdk install java 8.0.312-zulu
-sdk install java 11.0.13-zulu
-sdk install sbt
-sdk install scala 
+#sdk install java 8.0.312-zulu
+#sdk install java 11.0.13-zulu
+#sdk install sbt
+#sdk install scala 
+
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
 #brew install nmap
 
@@ -104,9 +105,11 @@ brew install --appdir="/Applications" slack
 brew install --appdir="/Applications" 1password
 # Docker doesn't seem to install Docker Desktop
 # brew cask install --appdir="/Applications" docker
+brew install drawio
 brew install jetbrains-toolbox
 brew install webex
-brwe install citrix-workspace
+brew install zoom
+brew install citrix-workspace
 #brew install --appdir="/Applications" caffeine
 
 softwareupdate --install-rosetta --agree-to-license
