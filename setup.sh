@@ -35,7 +35,7 @@ else
 fi
 
 # Make brew run in shell
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/t928390/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/<user>/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Install XCode Command Line Tools
