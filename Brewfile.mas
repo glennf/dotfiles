@@ -1,0 +1,24 @@
+# ====================================
+# Brewfile.mas - Mac App Store Applications
+# ====================================
+# Managed by dotfiles repository
+# Install Mac App Store apps using `mas` CLI
+#
+# Prerequisites:
+#   brew install mas
+#
+# Usage:
+#   brew bundle --file=Brewfile.mas
+#
+# Note: You must be signed into the Mac App Store
+#       for `mas install` to work.
+
+# ====================================
+# Mac App Store Apps
+# ====================================
+# Note: `mas` CLI is not currently installed on this system.
+# Run `brew install mas` first, then use `mas list` to populate this file.
+#
+# Example format:
+# mas "Xcode", id: 497799835
+# mas "1Password for Safari", id: 1569813296

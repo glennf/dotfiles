@@ -250,7 +250,7 @@ Critical Path: Task 1 → Task 2 → Task 3 → Task 7 → Task 9
 
 ---
 
-- [ ] 2. Audit System and Generate Brewfiles
+- [x] 2. Audit System and Generate Brewfiles
 
   **What to do**:
   - Run `brew bundle dump` to capture all installed Homebrew packages
