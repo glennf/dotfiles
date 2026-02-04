@@ -328,7 +328,7 @@ Critical Path: Task 1 → Task 2 → Task 3 → Task 7 → Task 9
 
 ---
 
-- [ ] 3. Create scripts/brew.sh
+- [x] 3. Create scripts/brew.sh
 
   **What to do**:
   - Create idempotent Homebrew installation script
@@ -391,7 +391,7 @@ Critical Path: Task 1 → Task 2 → Task 3 → Task 7 → Task 9
 
 ---
 
-- [ ] 4. Create scripts/macos.sh
+- [x] 4. Create scripts/macos.sh
 
   **What to do**:
   - Create comprehensive macOS defaults script
@@ -457,7 +457,7 @@ Critical Path: Task 1 → Task 2 → Task 3 → Task 7 → Task 9
 
 ---
 
-- [ ] 5. Create scripts/apps.sh
+- [x] 5. Create scripts/apps.sh
 
   **What to do**:
   - Install oh-my-zsh if not present (idempotent check for ~/.oh-my-zsh)
@@ -525,7 +525,7 @@ Critical Path: Task 1 → Task 2 → Task 3 → Task 7 → Task 9
 
 ---
 
-- [ ] 6. Create scripts/stow.sh and Stow Package Structure
+- [x] 6. Create scripts/stow.sh and Stow Package Structure
 
   **What to do**:
   - Create stow/ directory structure with packages: zsh, p10k, git, zprofile

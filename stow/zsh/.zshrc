@@ -119,6 +119,6 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 
 # Created by `pipx` on 2024-04-10 17:07:36
-export PATH="$PATH:/Users/glenn/.local/bin"
-if [ -f "/Users/glenn/.config/fabric/fabric-bootstrap.inc" ]; then . "/Users/glenn/.config/fabric/fabric-bootstrap.inc"; fi
+export PATH="$PATH:$HOME/.local/bin"
+if [ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ]; then . "$HOME/.config/fabric/fabric-bootstrap.inc"; fi
 eval "$(zoxide init zsh)"
