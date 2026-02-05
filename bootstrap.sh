@@ -21,9 +21,10 @@ readonly NC='\033[0m' # No Color
 # Configuration Variables
 #==============================================================================
 
-# Auto-detect dotfiles directory
-readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-readonly DOTFILES_DIR="${SCRIPT_DIR}"
+# Determine dotfiles directory (script location)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly SCRIPT_DIR
+readonly DOTFILES_DIR="$SCRIPT_DIR"
 readonly SCRIPTS_DIR="${DOTFILES_DIR}/scripts"
 
 # Script flags (default: run all)
@@ -132,7 +133,7 @@ run_script() {
     return 0
   fi
   
-  if ! bash "${script}" ${args}; then
+  if ! bash "${script}" "${args}"; then
     print_error "Script failed: ${script}"
     print_error "Fix the error and re-run bootstrap.sh"
     exit 1
