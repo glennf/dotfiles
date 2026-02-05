@@ -508,3 +508,144 @@ All packages exist and ready for stowing.
 - `bootstrap.sh` should call `./scripts/stow.sh` after `./scripts/apps.sh`
 - User may need to re-source `.zshrc` or restart shell after stowing
 - Existing dotfiles safely backed up to `~/.dotfiles-backup/`
+
+## [2026-02-05T01:00:00Z] Task 7: Create bootstrap.sh Orchestrator
+
+### Script Created
+- **File**: `bootstrap.sh` (265 lines, 6.6KB)
+- **Location**: Repository root `/Users/glenn/projects/dotfiles/`
+- **Purpose**: Main user-facing entry point that orchestrates all 4 setup scripts
+- **Shebang**: `#!/usr/bin/env bash` with `set -e` for error handling
+- **Executable**: `chmod +x` applied
+
+### CLI Flags Implemented
+1. `--no-brew` - Skip Homebrew installation (brew.sh)
+2. `--no-macos` - Skip macOS defaults configuration (macos.sh)
+3. `--no-apps` - Skip application installations (apps.sh)
+4. `--no-stow` - Skip GNU Stow dotfile linking (stow.sh)
+5. `--work` - Pass to brew.sh for Brewfile.work installation
+6. `--dry-run` - Simulate execution without running scripts
+7. `--help` - Show comprehensive usage documentation
+
+### Script Execution Order
+Enforced sequence (non-configurable):
+1. **brew.sh** - Homebrew + packages (foundation for all tools)
+2. **macos.sh** - macOS defaults (independent of other scripts)
+3. **apps.sh** - oh-my-zsh, mise, zoxide (requires Homebrew)
+4. **stow.sh** - Symlink dotfiles (requires GNU Stow from Homebrew)
+
+### Safety Features
+- **Root check**: `if [ "$EUID" -eq 0 ]` prevents running as root/sudo
+- **Script validation**: Verifies all required scripts exist before execution
+- **Error handling**: `set -e` stops on first failure
+- **Dry-run mode**: Previews commands without executing
+- **Clear error messages**: Red-colored errors with recovery instructions
+
+### User Experience Features
+- **Color-coded output**: 
+  - GREEN (✓) for success
+  - YELLOW (⚠) for warnings
+  - RED (✗) for errors
+  - BLUE (=>) for section headers
+- **Progress indicators**: "Step 1/4", "Step 2/4", etc.
+- **Comprehensive help**: Examples for common use cases
+- **Next steps guidance**: Post-installation instructions
+
+### Auto-Detection
+- **Dotfiles directory**: `SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"`
+- **Scripts directory**: `SCRIPTS_DIR="${DOTFILES_DIR}/scripts"`
+- **No hardcoded paths**: Works regardless of clone location
+
+### Flag Combination Logic
+- `--work` passes through to brew.sh only
+- `--no-*` flags skip individual scripts
+- Multiple flags can be combined: `--dry-run --work --no-macos`
+- Invalid flags exit with error and help message
+
+### Verification Results
+✓ Syntax validation passed: `bash -n bootstrap.sh`
+✓ Help flag works: `./bootstrap.sh --help` shows full usage
+✓ Dry-run works: `./bootstrap.sh --dry-run` simulates without executing
+✓ Multi-flag test: `--dry-run --work --no-macos` correctly skips step 2
+✓ Invalid flag handling: `--invalid-flag` shows error and help
+✓ Executable permissions: `-rwxr-xr-x` (755)
+✓ Root check implemented (EUID/UID variables are readonly, so simulation failed, but code is correct)
+
+### Design Decisions
+1. **Single entry point**: Users only run `./bootstrap.sh`, not individual scripts
+2. **Flexible execution**: Flags allow skipping steps (e.g., re-run only stow)
+3. **Dry-run first**: Users can preview before committing to changes
+4. **Work/personal separation**: `--work` flag keeps personal/corporate apps separate
+5. **Error on failure**: `set -e` ensures failed steps don't cascade
+6. **No automatic restarts**: User controls when to restart/logout
+
+### Help Documentation
+Includes:
+- Usage syntax
+- Flag descriptions
+- Common examples
+- Execution order explanation
+- Clear section headers
+
+### Script Coordination Strategy
+- **Pre-flight checks**: Validate environment before starting
+- **Sequential execution**: Each script completes before next starts
+- **Flag propagation**: `--work` passes to brew.sh only
+- **Skip logic**: Individual `RUN_*` boolean flags control execution
+- **Error handling**: First failure stops entire process
+
+### Testing Performed
+1. `bash -n bootstrap.sh` - Syntax valid ✓
+2. `./bootstrap.sh --help` - Help renders correctly ✓
+3. `./bootstrap.sh --dry-run` - All 4 scripts shown in order ✓
+4. `./bootstrap.sh --dry-run --work --no-macos` - Flags combine correctly ✓
+5. `./bootstrap.sh --invalid-flag` - Error handling works ✓
+6. File size: 6.6KB (265 lines) ✓
+7. Permissions: Executable ✓
+
+### Integration Points
+- **REQUIRES**: 
+  - `scripts/brew.sh` (Task 3 ✓)
+  - `scripts/macos.sh` (Task 4 ✓)
+  - `scripts/apps.sh` (Task 5 ✓)
+  - `scripts/stow.sh` (Task 6 ✓)
+- **BLOCKS**: 
+  - Task 8 (README documentation)
+  - Task 9 (Final verification)
+
+### User-Facing Entry Point
+This script is what users will:
+1. Clone repository: `git clone git@github.com:glennf/dotfiles`
+2. Enter directory: `cd dotfiles`
+3. Run bootstrap: `./bootstrap.sh` or `./bootstrap.sh --work`
+4. Follow on-screen instructions
+
+### Next Steps for Users (Post-Installation)
+Script displays at completion:
+```
+🎉 Bootstrap complete!
+
+Next steps:
+  1. Restart your Mac to apply all settings
+  2. Source your shell: source ~/.zshrc
+  3. Configure 1Password, VSCode, and other apps
+
+⚠ Some macOS settings require a logout/restart to take effect
+```
+
+### Issues Encountered
+1. **Root check testing limitation**: EUID/UID are readonly variables, cannot simulate root in test script
+   - **Resolution**: Code is correct, manual testing would require actual sudo
+2. **Flag parsing**: Used simple `while [[ $# -gt 0 ]]` loop instead of getopts for long-form flags
+
+### Professional Polish
+- Clear section headers with ASCII box comments
+- Consistent function naming (print_*, verify_*, run_*)
+- Comprehensive help documentation
+- User-friendly error messages
+- Progress indicators for multi-step process
+- Safe defaults (all scripts enabled by default)
+
+### Blockers Resolved
+All sub-scripts completed (Tasks 3-6 ✓), ready for orchestration.
+
