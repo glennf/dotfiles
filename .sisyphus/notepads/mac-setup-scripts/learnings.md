@@ -649,3 +649,9 @@ Next steps:
 ### Blockers Resolved
 All sub-scripts completed (Tasks 3-6 ✓), ready for orchestration.
 
+
+## README Documentation
+- Created a comprehensive README.md documenting the modular setup system.
+- Included Quick Start, Prerequisites, Installation Summary, Usage flags, Directory Structure, Customization, Troubleshooting, and a guide for adding new dotfiles via Stow.
+- Ensured all paths and flags mentioned in the README match the actual implementation in bootstrap.sh and the scripts/ directory.
+- Documented the idempotency of the scripts and the backup mechanism in stow.sh.
