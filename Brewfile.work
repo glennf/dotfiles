@@ -1,0 +1,18 @@
+# ====================================
+# Brewfile.work - Corporate Applications
+# ====================================
+# Managed by dotfiles repository
+# Install only on work machines
+#
+# Usage:
+#   brew bundle --file=Brewfile.work
+
+# ====================================
+# Corporate Communication & Remote Access
+# ====================================
+cask "zoom"               # Video conferencing
+# cask "webex"            # Cisco Webex (not currently installed)
+# cask "citrix-workspace" # Citrix Workspace (not currently installed)
+
+# Note: webex and citrix-workspace are referenced in setup.sh
+# but not found in current brew bundle dump. Uncomment if needed.
