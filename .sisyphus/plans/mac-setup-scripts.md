@@ -87,11 +87,11 @@ Transform a messy, non-idempotent dotfiles repo into a clean, modular, stow-base
 ```
 
 ### Definition of Done
-- [ ] `./bootstrap.sh` runs without errors on fresh Mac
-- [ ] `./bootstrap.sh` runs twice without duplicating entries or errors (idempotent)
-- [ ] All dotfiles symlinked to home directory via stow
-- [ ] `brew bundle check` reports all packages installed
-- [ ] macOS defaults applied (Finder shows hidden files, etc.)
+- [x] `./bootstrap.sh` runs without errors on fresh Mac
+- [x] `./bootstrap.sh` runs twice without duplicating entries or errors (idempotent)
+- [x] All dotfiles symlinked to home directory via stow
+- [x] `brew bundle check` reports all packages installed
+- [x] macOS defaults applied (Finder shows hidden files, etc.)
 
 ### Must Have
 - Flattened repo structure (single .git at root)
@@ -879,13 +879,13 @@ ls -la ~ | grep -E '\.zshrc|\.gitconfig|\.p10k'  # Expected: symlinks to stow/
 ```
 
 ### Final Checklist
-- [ ] Single .git at repo root (no nested repos)
-- [ ] All scripts executable and pass shellcheck
-- [ ] Brewfile captures current system with categories
-- [ ] Brewfile.work contains corporate apps separately
-- [ ] Stow packages for all dotfiles
-- [ ] No hardcoded /Users/glenn paths in any file
-- [ ] No `logout` or `exit` in scripts
-- [ ] README documents full usage
-- [ ] bootstrap.sh runs without errors (dry-run)
-- [ ] Idempotent: running twice produces no changes on second run
+- [x] Single .git at repo root (no nested repos)
+- [x] All scripts executable and pass shellcheck
+- [x] Brewfile captures current system with categories
+- [x] Brewfile.work contains corporate apps separately
+- [x] Stow packages for all dotfiles
+- [x] No hardcoded /Users/glenn paths in any file
+- [x] No `logout` or `exit` in scripts
+- [x] README documents full usage
+- [x] bootstrap.sh runs without errors (dry-run)
+- [x] Idempotent: running twice produces no changes on second run
