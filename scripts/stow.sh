@@ -33,12 +33,14 @@ echo ""
 echo -e "${YELLOW}Creating backup directory: ${BACKUP_DIR}${NC}"
 mkdir -p "${BACKUP_DIR}"
 
-PACKAGES=("zsh" "p10k" "git" "zprofile")
+PACKAGES=("zsh" "p10k" "git" "zprofile" "opencode")
 DOTFILES=(
     ".zshrc:zsh"
     ".p10k.zsh:p10k"
     ".gitconfig:git"
     ".zprofile:zprofile"
+    ".config/opencode/opencode.json:opencode"
+    ".config/opencode/oh-my-opencode.json:opencode"
 )
 
 echo -e "${YELLOW}Backing up existing dotfiles...${NC}"
@@ -47,6 +49,7 @@ for entry in "${DOTFILES[@]}"; do
     
     if [ -f "$HOME/$file" ] && [ ! -L "$HOME/$file" ]; then
         echo "  Backing up $file (regular file)"
+        mkdir -p "$(dirname "${BACKUP_DIR}/$file")"
         mv "$HOME/$file" "${BACKUP_DIR}/$file.$(date +%Y%m%d-%H%M%S)"
     elif [ -L "$HOME/$file" ]; then
         echo "  Skipping $file (already a symlink)"
